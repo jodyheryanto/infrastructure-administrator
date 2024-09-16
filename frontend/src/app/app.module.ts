@@ -7,14 +7,7 @@ import {NgxMdModule} from "ngx-md"
 import {CoreModule} from "./core/core.module"
 import {SharedModule} from './shared/shared.module'
 
-import {
-  HttpClientModule,
-  HttpEvent,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest,
-  HTTP_INTERCEPTORS
-} from '@angular/common/http'
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
@@ -25,25 +18,18 @@ import {environment} from '../environments/environment'
 import {EffectsModule} from '@ngrx/effects'
 import {AppEffects} from './store/app.effects'
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FlexLayoutModule,
-    CoreModule,
-    HttpClientModule,
-    SharedModule,
-    StoreModule.forRoot(reducers, {metaReducers}),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects]),
-    NgxMdModule.forRoot(),
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FlexLayoutModule,
+        CoreModule,
+        SharedModule,
+        StoreModule.forRoot(reducers, { metaReducers }),
+        !environment.production ? StoreDevtoolsModule.instrument({connectInZone: true}) : [],
+        EffectsModule.forRoot([AppEffects]),
+        NgxMdModule.forRoot()], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
 }

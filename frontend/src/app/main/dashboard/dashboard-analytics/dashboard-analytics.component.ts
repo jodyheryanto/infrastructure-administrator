@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 
 import {AvatarGenerator} from 'random-avatar-generator'
 import {uniqueNamesGenerator, names, Config, countries} from 'unique-names-generator'

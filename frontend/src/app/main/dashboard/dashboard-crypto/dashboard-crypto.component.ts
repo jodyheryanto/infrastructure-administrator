@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'
 import {InfiniteRowModelModule} from "@ag-grid-community/infinite-row-model"
 import {ClientSideRowModelModule} from "@ag-grid-community/client-side-row-model"
-import {HttpClient} from "@angular/common/http"
+import { HttpClient } from "@angular/common/http"
 import {ColDef, GridOptions} from "@ag-grid-community/core"
 
 const categories = {
